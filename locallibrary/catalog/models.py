@@ -79,7 +79,7 @@ class BookInstance(models.Model):
         return False
 
     LOAN_STATUS = (
-        ('d', 'Maintenance'),
+        ('m', 'Maintenance'),
         ('o', 'On loan'),
         ('a', 'Available'),
         ('r', 'Reserved'),
@@ -89,7 +89,7 @@ class BookInstance(models.Model):
         max_length=1,
         choices=LOAN_STATUS,
         blank=True,
-        default='d',
+        default='m',
         help_text='Book availability')
 
     class Meta:
