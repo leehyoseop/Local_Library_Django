@@ -21,9 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '6s(2oz*po$@5krez9c)4&!774-dcbow1#e_i0j^f(um54y$i4)'
-
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '6s(2oz*po$@5krez9c)4&!774-dcbow1#e_i0j^f(um54y$i4)')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
