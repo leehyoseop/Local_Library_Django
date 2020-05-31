@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from accounts.views import signup_view, activation_sent_view, activate
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+
+
 #urlpatterns = [
 #    path('admin/', admin.site.urls),
 #]
@@ -29,7 +32,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')),
     path('', RedirectView.as_view(url='catalog/', permanent=True)),
+    path('accounts/signup/', signup_view, name = 'signup'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/sent/', activation_sent_view, name = "activation_sent"),
+    path('accounts/activate/<slug:uidb64>/<slug:token>/', activate, name='activate'),
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
